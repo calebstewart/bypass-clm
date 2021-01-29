@@ -8,7 +8,7 @@ This is accomplished by doing the following:
 2. We ensure the static method `GetSystemLockdownPolicy` has been compiled by the JIT engine.
 3. We retrieve a function pointer for the compiled method.
 4. We utilize VirtualProtect to ensure the function code is writable.
-5. We overwrite the method with the stub `mov rax, 0; ret`. This effectively forces `GetSystemLockdownPolicy` to return `SystemEnforcementMode.None`.
+5. We overwrite the method with the stub `xor rax,rax; ret`. This effectively forces `GetSystemLockdownPolicy` to return `SystemEnforcementMode.None`.
 6. We utilize the `Microsoft.PowerShell.ConsoleShell` module to load an interactive PowerShell session within this process.
 
 It's worth noting that this will not spawn `powershell.exe`. The PowerShell prompt and interpreter are run from memory in the current process.
