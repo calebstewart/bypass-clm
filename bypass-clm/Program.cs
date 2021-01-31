@@ -65,7 +65,9 @@ namespace loader
             }
 
             // Run powershell from the current process (won't start powershell.exe, but run from the powershell .Net libraries)
-            Microsoft.PowerShell.ConsoleShell.Start(System.Management.Automation.Runspaces.RunspaceConfiguration.Create(), "Banner", "Help", new string[] { });
+            Microsoft.PowerShell.ConsoleShell.Start(System.Management.Automation.Runspaces.RunspaceConfiguration.Create(), "Banner", "Help", new string[] {
+                "-exec", "bypass", "-nop"
+            });
         }
     }
 
