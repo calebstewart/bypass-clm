@@ -11,6 +11,8 @@ This is accomplished by doing the following:
 5. We overwrite the method with the stub `xor rax,rax; ret`. This effectively forces `GetSystemLockdownPolicy` to return `SystemEnforcementMode.None`.
 6. We utilize the `Microsoft.PowerShell.ConsoleShell` module to load an interactive PowerShell session within this process.
 
+We also implement a method similar to the `rasta-mouse` AMSI Bypass to ensure the new shell is not scanned by AMSI.
+
 It's worth noting that this will not spawn `powershell.exe`. The PowerShell prompt and interpreter are run from memory in the current process.
 
 ## Executing a FLM Shell under AppControl
